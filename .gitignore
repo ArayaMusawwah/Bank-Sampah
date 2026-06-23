@@ -1,12 +1,7 @@
 *.iml
 .gradle
 /local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+/.idea
 .DS_Store
 /build
 /captures
@@ -15,3 +10,20 @@
 local.properties
 *.jks
 *.keystore
+
+# APK & release artifacts
+/app/release/
+*.apk
+*.aab
+
+# Google Services (if added later)
+google-services.json
+
+# NDK
+obj/
+
+# IntelliJ
+out/
+
+# OS-specific
+Thumbs.db
