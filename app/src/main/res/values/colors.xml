@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary (Forest Green) -->
+    <color name="green_900">#FF1B5E20</color>
+    <color name="green_700">#FF2E7D32</color>
+    <color name="green_500">#FF4CAF50</color>
+    <color name="green_100">#FFE8F5E9</color>
+    <color name="green_50">#FFF1F8E9</color>
+
+    <!-- Secondary (Earth Brown) -->
+    <color name="brown_700">#FF4E342E</color>
+    <color name="brown_400">#FF8D6E63</color>
+    <color name="brown_100">#FFD7CCC8</color>
+
+    <!-- Surface / Background (Cream) -->
+    <color name="cream_50">#FFFFFDE7</color>
+    <color name="cream_100">#FFFFF9C4</color>
+
+    <!-- Neutral (Text & UI) -->
+    <color name="neutral_0">#FFFFFFFF</color>
+    <color name="neutral_50">#FFF8F9FA</color>
+    <color name="neutral_100">#FFF1F3F4</color>
+    <color name="neutral_200">#FFE9ECEF</color>
+    <color name="neutral_300">#FFADB5BD</color>
+    <color name="neutral_400">#FF868E96</color>
+    <color name="neutral_500">#FF6C757D</color>
+    <color name="neutral_700">#FF495057</color>
+    <color name="neutral_900">#FF212529</color>
+
+    <!-- Error -->
+    <color name="error_700">#FFD32F2F</color>
+    <color name="error_50">#FFFFEBEE</color>
+
+    <!-- Semantic aliases for theme -->
+    <color name="colorPrimary">@color/green_900</color>
+    <color name="colorOnPrimary">@color/neutral_0</color>
+    <color name="colorPrimaryContainer">@color/green_100</color>
+    <color name="colorOnPrimaryContainer">@color/green_900</color>
+    <color name="colorSecondary">@color/brown_700</color>
+    <color name="colorOnSecondary">@color/neutral_0</color>
+    <color name="colorSurface">@color/cream_50</color>
+    <color name="colorOnSurface">@color/neutral_900</color>
+    <color name="colorOnSurfaceVariant">@color/neutral_500</color>
+    <color name="colorError">@color/error_700</color>
+    <color name="colorOnError">@color/neutral_0</color>
+    <color name="colorErrorContainer">@color/error_50</color>
+</resources>

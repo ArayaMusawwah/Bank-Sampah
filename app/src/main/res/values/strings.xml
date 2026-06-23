@@ -1,0 +1,63 @@
+<resources>
+    <string name="app_name">Bank Sampah</string>
+
+    <!-- Brand -->
+    <string name="brand_tagline">Buku besar digital untuk pengelolaan setoran sampah</string>
+    <string name="brand_subtitle">Muhammad Iqbal Ramadhan · 231011400285</string>
+
+    <!-- Login -->
+    <string name="login_title">Selamat Datang Kembali</string>
+    <string name="login_subtitle">Masuk untuk melanjutkan pencatatan</string>
+    <string name="login_username">Nama pengguna</string>
+    <string name="login_password">Kata sandi</string>
+    <string name="login_button">Masuk</string>
+    <string name="login_hint">Gunakan admin · 12345</string>
+    <string name="login_error_empty">Kolom ini wajib diisi</string>
+    <string name="login_error_invalid">Kombinasi nama pengguna dan kata sandi tidak cocok</string>
+
+    <!-- Main -->
+    <string name="greeting">Catatan Setoran</string>
+    <string name="search_hint">Cari nama anggota…</string>
+    <string name="sort_label">Urutkan</string>
+    <string name="sort_newest">Terbaru</string>
+    <string name="sort_nama_asc">Nama A → Z</string>
+    <string name="sort_nama_desc">Nama Z → A</string>
+    <string name="sort_berat_asc">Berat Terendah</string>
+    <string name="sort_berat_desc">Berat Tertinggi</string>
+    <string name="sort_saldo_asc">Saldo Terendah</string>
+    <string name="sort_saldo_desc">Saldo Tertinggi</string>
+    <string name="empty_list">Belum ada catatan setoran</string>
+    <string name="empty_hint">Tekan tombol tambah untuk memulai</string>
+    <string name="confirm_delete_title">Hapus Catatan Ini?</string>
+    <string name="confirm_delete_message">Tindakan ini tidak dapat dibatalkan</string>
+    <string name="btn_yes">Ya</string>
+    <string name="btn_no">Tidak</string>
+    <string name="btn_logout">Keluar</string>
+
+    <!-- Stats -->
+    <string name="stat_total_anggota">Anggota</string>
+    <string name="stat_total_berat">Berat</string>
+    <string name="stat_total_saldo">Saldo</string>
+
+    <!-- Add/Edit -->
+    <string name="add_title">Catatan Baru</string>
+    <string name="edit_title">Ubah Catatan</string>
+    <string name="label_nama">Nama anggota</string>
+    <string name="label_jenis">Kategori sampah</string>
+    <string name="label_berat">Berat setoran</string>
+    <string name="label_saldo">Nilai saldo</string>
+    <string name="btn_simpan">Simpan Catatan</string>
+    <string name="btn_batal">Batalkan</string>
+    <string name="error_nama">Nama anggota belum diisi</string>
+    <string name="error_jenis">Pilih kategori terlebih dahulu</string>
+    <string name="error_berat">Berat harus lebih dari 0</string>
+    <string name="error_saldo">Saldo harus lebih dari 0</string>
+    <string name="success_add">Catatan berhasil disimpan</string>
+    <string name="success_update">Catatan berhasil diperbarui</string>
+
+    <!-- Item labels -->
+    <string name="label_berat_short">Berat</string>
+    <string name="label_saldo_short">Saldo</string>
+    <string name="action_edit">Sunting</string>
+    <string name="action_delete">Hapus</string>
+</resources>
