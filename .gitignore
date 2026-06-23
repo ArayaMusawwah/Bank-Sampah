@@ -11,6 +11,9 @@ local.properties
 *.jks
 *.keystore
 
+# Docs (design specs, plans)
+/docs/
+
 # APK & release artifacts
 /app/release/
 *.apk
