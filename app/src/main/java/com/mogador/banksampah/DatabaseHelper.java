@@ -12,7 +12,7 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "db_banksampah_231011400285.db";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
 
     private static final String TABLE_SETORAN = "setoran";
     private static final String TABLE_ANGGOTA = "anggota";
@@ -42,6 +42,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL(createAnggotaTable());
             insertSeedAnggota(db);
             linkSetoranToAnggota(db);
+        }
+        if (oldVersion < 4) {
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_SETORAN);
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_ANGGOTA);
+            db.execSQL(createSetoranTable());
+            db.execSQL(createAnggotaTable());
+            insertSeedAnggota(db);
+            insertSeedSetoran(db);
         }
     }
 
@@ -104,7 +112,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         insertSetoranRow(db, "Indah Alam", "Organik", 7.5, 7500);
         insertSetoranRow(db, "Muhammad Iqbal Ramadhan", "Plastik", 6.0, 18000);
         insertSetoranRow(db, "Ridwan Rayap Besi", "Kertas", 2.8, 4200);
-        insertSetoranRow(db, "Andika Warteg", "Kaca", 1.5, 4500);
+        insertSetoranRow(db, "Andika Warteg", "Botol Kaca", 1.5, 4500);
         linkSetoranToAnggota(db);
     }
 

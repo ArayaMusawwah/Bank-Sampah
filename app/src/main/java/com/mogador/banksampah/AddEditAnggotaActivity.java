@@ -1,6 +1,7 @@
 package com.mogador.banksampah;
 
 import android.os.Bundle;
+import android.util.Patterns;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -22,7 +23,7 @@ public class AddEditAnggotaActivity extends AppCompatActivity {
 
     public static final String EXTRA_ANGGOTA_ID = "extra_anggota_id";
 
-    private TextInputLayout tilNama;
+    private TextInputLayout tilNama, tilAlamat, tilEmail, tilTelepon;
     private TextInputEditText etNama, etAlamat, etEmail, etTelepon;
     private MaterialButton btnSimpan, btnBatal;
 
@@ -48,6 +49,9 @@ public class AddEditAnggotaActivity extends AppCompatActivity {
         dbHelper = new DatabaseHelper(this);
 
         tilNama = findViewById(R.id.tilNama);
+        tilAlamat = findViewById(R.id.tilAlamat);
+        tilEmail = findViewById(R.id.tilEmail);
+        tilTelepon = findViewById(R.id.tilTelepon);
         etNama = findViewById(R.id.etNama);
         etAlamat = findViewById(R.id.etAlamat);
         etEmail = findViewById(R.id.etEmail);
@@ -83,6 +87,9 @@ public class AddEditAnggotaActivity extends AppCompatActivity {
 
     private void saveData() {
         tilNama.setError(null);
+        tilAlamat.setError(null);
+        tilEmail.setError(null);
+        tilTelepon.setError(null);
 
         String nama = etNama.getText().toString().trim();
         String alamat = etAlamat.getText().toString().trim();
@@ -93,6 +100,27 @@ public class AddEditAnggotaActivity extends AppCompatActivity {
 
         if (nama.isEmpty()) {
             tilNama.setError(getString(R.string.error_nama_anggota));
+            valid = false;
+        } else if (nama.length() < 3) {
+            tilNama.setError(getString(R.string.error_nama_min));
+            valid = false;
+        }
+
+        if (alamat.isEmpty()) {
+            tilAlamat.setError(getString(R.string.error_alamat));
+            valid = false;
+        } else if (alamat.length() < 5) {
+            tilAlamat.setError(getString(R.string.error_alamat_min));
+            valid = false;
+        }
+
+        if (!email.isEmpty() && !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            tilEmail.setError(getString(R.string.error_email_format));
+            valid = false;
+        }
+
+        if (!telepon.isEmpty() && !telepon.matches("\\d{10,15}")) {
+            tilTelepon.setError(getString(R.string.error_telepon_format));
             valid = false;
         }
 

@@ -62,12 +62,25 @@ public class LoginActivity extends AppCompatActivity {
         String username = etUsername.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
 
-        if (username.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, getString(R.string.login_error_empty), Toast.LENGTH_SHORT).show();
-            if (username.isEmpty()) tilUsername.setError(getString(R.string.login_error_empty));
-            if (password.isEmpty()) tilPassword.setError(getString(R.string.login_error_empty));
-            return;
+        boolean valid = true;
+
+        if (username.isEmpty()) {
+            tilUsername.setError(getString(R.string.login_error_empty));
+            valid = false;
+        } else if (username.length() < 4) {
+            tilUsername.setError(getString(R.string.login_error_min));
+            valid = false;
         }
+
+        if (password.isEmpty()) {
+            tilPassword.setError(getString(R.string.login_error_empty));
+            valid = false;
+        } else if (password.length() < 4) {
+            tilPassword.setError(getString(R.string.login_error_min));
+            valid = false;
+        }
+
+        if (!valid) return;
 
         if (username.equals(DEFAULT_USERNAME) && password.equals(DEFAULT_PASSWORD)) {
             SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);

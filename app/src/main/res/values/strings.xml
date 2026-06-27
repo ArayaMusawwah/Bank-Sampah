@@ -13,6 +13,7 @@
     <string name="login_button">Masuk</string>
     <string name="login_hint">Gunakan admin · 12345</string>
     <string name="login_error_empty">Kolom ini wajib diisi</string>
+    <string name="login_error_min">Minimal 4 karakter</string>
     <string name="login_error_invalid">Kombinasi nama pengguna dan kata sandi tidak cocok</string>
 
     <!-- Main -->
@@ -52,7 +53,9 @@
     <string name="error_nama">Nama anggota belum diisi</string>
     <string name="error_jenis">Pilih kategori terlebih dahulu</string>
     <string name="error_berat">Berat harus lebih dari 0</string>
+    <string name="error_berat_max">Berat maksimal 999.999 kg</string>
     <string name="error_saldo">Saldo harus lebih dari 0</string>
+    <string name="error_saldo_max">Saldo maksimal Rp 999.999.999</string>
     <string name="success_add">Catatan berhasil disimpan</string>
     <string name="success_update">Catatan berhasil diperbarui</string>
 
@@ -85,6 +88,11 @@
     <string name="labelemail">Email</string>
     <string name="labeltelepon">Telepon</string>
     <string name="error_nama_anggota">Nama wajib diisi</string>
+    <string name="error_nama_min">Nama minimal 3 karakter</string>
+    <string name="error_alamat">Alamat wajib diisi</string>
+    <string name="error_alamat_min">Alamat minimal 5 karakter</string>
+    <string name="error_email_format">Format email tidak valid</string>
+    <string name="error_telepon_format">Nomor telepon tidak valid</string>
     <string name="btn_simpan_anggota">Simpan Anggota</string>
     <string name="success_add_anggota">Anggota berhasil ditambahkan</string>
     <string name="success_update_anggota">Anggota berhasil diperbarui</string>

@@ -106,8 +106,6 @@
     <br>
     <sub>Dashboard Statistik</sub>
   </td>
-</tr>
-<tr>
   <td align="center">
     <a href="screenshots/menu-daftar-setoran.jpg">
       <img src="screenshots/thumb/menu-daftar-setoran.jpg" alt="Daftar Setoran" width="200">
@@ -115,6 +113,8 @@
     <br>
     <sub>Daftar Setoran</sub>
   </td>
+</tr>
+<tr>
   <td align="center">
     <a href="screenshots/menu-daftar-anggota.jpg">
       <img src="screenshots/thumb/menu-daftar-anggota.jpg" alt="Daftar Anggota" width="200">
@@ -122,8 +122,6 @@
     <br>
     <sub>Daftar Anggota</sub>
   </td>
-</tr>
-<tr>
   <td align="center">
     <a href="screenshots/tambah-setoran.jpg">
       <img src="screenshots/thumb/tambah-setoran.jpg" alt="Tambah Setoran" width="200">

@@ -41,6 +41,9 @@ public class AddEditSetoranActivity extends AppCompatActivity {
     private List<Anggota> anggotaList = new ArrayList<>();
     private Anggota selectedAnggota = null;
     private ArrayAdapter<String> anggotaAdapter;
+    private static final double MAX_BERAT = 999999;
+    private static final double MAX_SALDO = 999999999;
+
     private final String[] jenisOptions = {
             "Pilih jenis sampah", "Plastik", "Kertas", "Botol Kaca", "Logam", "Organik"
     };
@@ -75,8 +78,8 @@ public class AddEditSetoranActivity extends AppCompatActivity {
         loadAnggotaDropdown();
 
         ArrayAdapter<String> jenisAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, jenisOptions);
-        jenisAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                R.layout.item_spinner, jenisOptions);
+        jenisAdapter.setDropDownViewResource(R.layout.item_spinner_dropdown);
         spinnerJenis.setAdapter(jenisAdapter);
 
         setoranId = getIntent().getIntExtra(EXTRA_SETORAN_ID, -1);
@@ -200,6 +203,9 @@ public class AddEditSetoranActivity extends AppCompatActivity {
                 if (berat <= 0) {
                     tilBerat.setError(getString(R.string.error_berat));
                     valid = false;
+                } else if (berat > MAX_BERAT) {
+                    tilBerat.setError(getString(R.string.error_berat_max));
+                    valid = false;
                 }
             }
         } catch (NumberFormatException e) {
@@ -214,6 +220,9 @@ public class AddEditSetoranActivity extends AppCompatActivity {
                 saldo = Double.parseDouble(saldoStr);
                 if (saldo <= 0) {
                     tilSaldo.setError(getString(R.string.error_saldo));
+                    valid = false;
+                } else if (saldo > MAX_SALDO) {
+                    tilSaldo.setError(getString(R.string.error_saldo_max));
                     valid = false;
                 }
             }
