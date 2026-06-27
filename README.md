@@ -30,7 +30,7 @@
 <br>
 
 <p align="center">
-  <img src="screenshots/hero-banner.jpg" alt="Hero Banner" width="100%" style="max-width: 808px; border-radius: 16px;">
+  <img src="screenshots/hero_banner.png" alt="Hero Banner" width="100%" style="max-width: 808px; border-radius: 16px;">
 </p>
 
 <br>
