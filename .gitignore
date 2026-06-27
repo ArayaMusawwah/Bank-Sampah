@@ -30,3 +30,24 @@ out/
 
 # OS-specific
 Thumbs.db
+
+# Database files (local copies, not source)
+*.db
+
+# Archives (zips, etc.)
+*.zip
+
+# Documents (laporan, dll)
+*.docx
+*.pdf
+*.xlsx
+
+# Python helper scripts (not part of app source)
+generate_laporan.py
+
+# Agent / planning files (internal only)
+.mimocode/
+AGENTS.md
+
+# Machine-specific gradle config
+gradle/gradle-daemon-jvm.properties
