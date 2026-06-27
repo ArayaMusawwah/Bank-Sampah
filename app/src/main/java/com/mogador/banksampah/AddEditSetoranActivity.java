@@ -1,6 +1,8 @@
 package com.mogador.banksampah;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -13,15 +15,22 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class AddEditSetoranActivity extends AppCompatActivity {
 
     public static final String EXTRA_SETORAN_ID = "extra_setoran_id";
 
-    private TextInputLayout tilNama, tilBerat, tilSaldo;
-    private TextInputEditText etNama, etBerat, etSaldo;
+    private TextInputLayout tilBerat, tilSaldo, tilAnggota;
+    private TextInputEditText etBerat, etSaldo;
+    private MaterialAutoCompleteTextView etAnggota;
     private Spinner spinnerJenis;
     private MaterialButton btnSimpan, btnBatal;
 
@@ -29,6 +38,9 @@ public class AddEditSetoranActivity extends AppCompatActivity {
     private int setoranId = -1;
     private boolean isEditMode = false;
 
+    private List<Anggota> anggotaList = new ArrayList<>();
+    private Anggota selectedAnggota = null;
+    private ArrayAdapter<String> anggotaAdapter;
     private final String[] jenisOptions = {
             "Pilih jenis sampah", "Plastik", "Kertas", "Botol Kaca", "Logam", "Organik"
     };
@@ -50,15 +62,17 @@ public class AddEditSetoranActivity extends AppCompatActivity {
 
         dbHelper = new DatabaseHelper(this);
 
-        tilNama = findViewById(R.id.tilNama);
         tilBerat = findViewById(R.id.tilBerat);
         tilSaldo = findViewById(R.id.tilSaldo);
-        etNama = findViewById(R.id.etNama);
+        tilAnggota = findViewById(R.id.tilAnggota);
         etBerat = findViewById(R.id.etBerat);
         etSaldo = findViewById(R.id.etSaldo);
+        etAnggota = findViewById(R.id.etAnggota);
         spinnerJenis = findViewById(R.id.spinnerJenis);
         btnSimpan = findViewById(R.id.btnSimpan);
         btnBatal = findViewById(R.id.btnBatal);
+
+        loadAnggotaDropdown();
 
         ArrayAdapter<String> jenisAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, jenisOptions);
@@ -81,10 +95,68 @@ public class AddEditSetoranActivity extends AppCompatActivity {
         btnBatal.setOnClickListener(v -> finish());
     }
 
+    private void loadAnggotaDropdown() {
+        anggotaList = dbHelper.getAllAnggota(null);
+        Collections.sort(anggotaList, Comparator.comparing(Anggota::getNama));
+
+        List<String> namaAnggota = new ArrayList<>();
+        for (Anggota a : anggotaList) {
+            namaAnggota.add(a.getNama());
+        }
+
+        anggotaAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_dropdown_item_1line, namaAnggota);
+        etAnggota.setAdapter(anggotaAdapter);
+
+        etAnggota.setOnItemClickListener((parent, view, position, id) -> {
+            String selected = anggotaAdapter.getItem(position);
+            for (Anggota a : anggotaList) {
+                if (a.getNama().equals(selected)) {
+                    selectedAnggota = a;
+                    break;
+                }
+            }
+        });
+
+        etAnggota.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                selectedAnggota = null;
+                String typed = s.toString().trim();
+                for (Anggota a : anggotaList) {
+                    if (a.getNama().equalsIgnoreCase(typed)) {
+                        selectedAnggota = a;
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
+
+        etAnggota.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                etAnggota.showDropDown();
+            }
+        });
+
+        etAnggota.setOnClickListener(v -> etAnggota.showDropDown());
+    }
+
     private void loadSetoranData() {
         Setoran setoran = dbHelper.getSetoranById(setoranId);
         if (setoran != null) {
-            etNama.setText(setoran.getNamaAnggota());
+            for (int i = 0; i < anggotaList.size(); i++) {
+                if (anggotaList.get(i).getId() == setoran.getAnggotaId()) {
+                    etAnggota.setText(anggotaList.get(i).getNama(), false);
+                    selectedAnggota = anggotaList.get(i);
+                    break;
+                }
+            }
             for (int i = 1; i < jenisOptions.length; i++) {
                 if (jenisOptions[i].equals(setoran.getJenisSampah())) {
                     spinnerJenis.setSelection(i);
@@ -97,19 +169,19 @@ public class AddEditSetoranActivity extends AppCompatActivity {
     }
 
     private void saveData() {
-        tilNama.setError(null);
         tilBerat.setError(null);
         tilSaldo.setError(null);
+        tilAnggota.setError(null);
 
-        String nama = etNama.getText().toString().trim();
+        String anggotaText = etAnggota.getText().toString().trim();
         int jenisPos = spinnerJenis.getSelectedItemPosition();
         String beratStr = etBerat.getText().toString().trim();
         String saldoStr = etSaldo.getText().toString().trim();
 
         boolean valid = true;
 
-        if (nama.isEmpty()) {
-            tilNama.setError(getString(R.string.error_nama));
+        if (selectedAnggota == null || anggotaText.isEmpty()) {
+            tilAnggota.setError(getString(R.string.error_nama));
             valid = false;
         }
         if (jenisPos == 0) {
@@ -151,14 +223,17 @@ public class AddEditSetoranActivity extends AppCompatActivity {
         }
 
         if (!valid) return;
+
+        String nama = selectedAnggota.getNama();
+        int anggotaId = selectedAnggota.getId();
         String jenis = jenisOptions[jenisPos];
 
         if (isEditMode) {
-            Setoran setoran = new Setoran(setoranId, nama, jenis, berat, saldo);
+            Setoran setoran = new Setoran(setoranId, anggotaId, nama, jenis, berat, saldo);
             dbHelper.updateSetoran(setoran);
             Toast.makeText(this, getString(R.string.success_update), Toast.LENGTH_SHORT).show();
         } else {
-            Setoran setoran = new Setoran(nama, jenis, berat, saldo);
+            Setoran setoran = new Setoran(anggotaId, nama, jenis, berat, saldo);
             dbHelper.insertSetoran(setoran);
             Toast.makeText(this, getString(R.string.success_add), Toast.LENGTH_SHORT).show();
         }

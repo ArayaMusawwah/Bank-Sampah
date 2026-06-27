@@ -25,6 +25,8 @@
 
         <activity android:name=".AddEditSetoranActivity" />
 
+        <activity android:name=".AddEditAnggotaActivity" />
+
     </application>
 
 </manifest>

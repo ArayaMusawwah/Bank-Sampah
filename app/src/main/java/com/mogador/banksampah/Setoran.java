@@ -2,6 +2,7 @@ package com.mogador.banksampah;
 
 public class Setoran {
     private int id;
+    private int anggotaId;
     private String namaAnggota;
     private String jenisSampah;
     private double berat;
@@ -9,8 +10,19 @@ public class Setoran {
 
     public Setoran() {}
 
-    public Setoran(int id, String namaAnggota, String jenisSampah, double berat, double saldo) {
+    public Setoran(int id, int anggotaId, String namaAnggota, String jenisSampah,
+                   double berat, double saldo) {
         this.id = id;
+        this.anggotaId = anggotaId;
+        this.namaAnggota = namaAnggota;
+        this.jenisSampah = jenisSampah;
+        this.berat = berat;
+        this.saldo = saldo;
+    }
+
+    public Setoran(int anggotaId, String namaAnggota, String jenisSampah,
+                   double berat, double saldo) {
+        this.anggotaId = anggotaId;
         this.namaAnggota = namaAnggota;
         this.jenisSampah = jenisSampah;
         this.berat = berat;
@@ -18,6 +30,7 @@ public class Setoran {
     }
 
     public Setoran(String namaAnggota, String jenisSampah, double berat, double saldo) {
+        this.anggotaId = -1;
         this.namaAnggota = namaAnggota;
         this.jenisSampah = jenisSampah;
         this.berat = berat;
@@ -26,6 +39,9 @@ public class Setoran {
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
+
+    public int getAnggotaId() { return anggotaId; }
+    public void setAnggotaId(int anggotaId) { this.anggotaId = anggotaId; }
 
     public String getNamaAnggota() { return namaAnggota; }
     public void setNamaAnggota(String namaAnggota) { this.namaAnggota = namaAnggota; }

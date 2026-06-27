@@ -43,6 +43,7 @@
     <string name="add_title">Catatan Baru</string>
     <string name="edit_title">Ubah Catatan</string>
     <string name="label_nama">Nama anggota</string>
+    <string name="label_pilih_anggota">Pilih anggota</string>
     <string name="label_jenis">Kategori sampah</string>
     <string name="label_berat">Berat setoran</string>
     <string name="label_saldo">Nilai saldo</string>
@@ -60,4 +61,32 @@
     <string name="label_saldo_short">Saldo</string>
     <string name="action_edit">Sunting</string>
     <string name="action_delete">Hapus</string>
+
+    <!-- Bottom Navigation -->
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_setoran">Setoran</string>
+    <string name="nav_anggota">Anggota</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_title">Ringkasan</string>
+    <string name="dashboard_total_setoran">Setoran</string>
+    <string name="dashboard_breakdown_title">Berat per Jenis Sampah</string>
+    <string name="dashboard_recent_title">Setoran Terbaru</string>
+    <string name="dashboard_no_data">Belum ada data</string>
+
+    <!-- Anggota -->
+    <string name="add_anggota_title">Tambah Anggota</string>
+    <string name="edit_anggota_title">Ubah Anggota</string>
+    <string name="search_hint_anggota">Cari nama anggota…</string>
+    <string name="empty_anggota">Belum ada anggota</string>
+    <string name="empty_hint_anggota">Tekan tombol tambah untuk menambah anggota</string>
+    <string name="label_nama_anggota">Nama lengkap</string>
+    <string name="labelalamat">Alamat</string>
+    <string name="labelemail">Email</string>
+    <string name="labeltelepon">Telepon</string>
+    <string name="error_nama_anggota">Nama wajib diisi</string>
+    <string name="btn_simpan_anggota">Simpan Anggota</string>
+    <string name="success_add_anggota">Anggota berhasil ditambahkan</string>
+    <string name="success_update_anggota">Anggota berhasil diperbarui</string>
+    <string name="confirm_delete_anggota_message">Hapus data anggota ini?</string>
 </resources>
